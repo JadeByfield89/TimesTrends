@@ -105,7 +105,7 @@ fun ArticleCell(article: TimesArticle, navController: NavController) {
         Card(
             modifier = Modifier
                 .height(200.dp)
-                .width(200.dp)
+                .width(screenWidth / 2 )
                 .padding(8.dp)
         ) {
             AsyncImage(

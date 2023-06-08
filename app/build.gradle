@@ -9,6 +9,10 @@ android {
     namespace 'com.demo.timestrends'
     compileSdk 33
 
+    defaultConfig {
+        buildConfigField 'String', 'API_KEY', "${API_KEY}"
+    }
+
     buildFeatures {
         compose = true
     }
