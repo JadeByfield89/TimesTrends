@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface TimesAPI {
 
-    @Headers("Accept: application/json")
+   
     @GET("svc/mostpopular/v2/shared/1/facebook.json")
     suspend fun getPopularArticles(@Query("api-key") apiKey: String): TimesResponse
 

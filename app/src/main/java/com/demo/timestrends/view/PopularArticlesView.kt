@@ -139,7 +139,7 @@ fun ArticleCell(article: TimesArticle, navController: NavController) {
             text = article.title,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(start = 4.dp)
+            modifier = Modifier.padding(start = 8.dp)
         )
 
         Spacer(modifier = Modifier.height(4.dp))
@@ -148,7 +148,7 @@ fun ArticleCell(article: TimesArticle, navController: NavController) {
             text = article.byline,
             fontSize = 10.sp,
             fontWeight = FontWeight.Normal,
-            modifier = Modifier.padding(start = 4.dp)
+            modifier = Modifier.padding(start = 8.dp)
         )
     }
 }

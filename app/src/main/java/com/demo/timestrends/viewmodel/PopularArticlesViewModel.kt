@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PopularArticlesViewModel @Inject constructor(private val api: TimesAPI) : ViewModel() {
 
-    var popularArticlesFlow: Flow<List<TimesArticle>> = flow {
+    val popularArticlesFlow: Flow<List<TimesArticle>> = flow {
         val popularArticles = getPopularArticles()
         emit(popularArticles)
     }
