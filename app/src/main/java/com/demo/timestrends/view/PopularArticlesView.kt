@@ -2,7 +2,14 @@ package com.demo.timestrends.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -18,6 +25,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,12 +37,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import coil.compose.AsyncImage
-import com.demo.timestrends.model.ArticleMediaMetadata
+import com.demo.timestrends.R
 import com.demo.timestrends.model.TimesArticle
 import com.demo.timestrends.viewmodel.PopularArticlesViewModel
 import java.net.URLDecoder
 import java.net.URLEncoder
-import javax.inject.Inject
 
 
 @Composable
@@ -56,7 +64,7 @@ fun PopularArticlesView(viewModel: PopularArticlesViewModel) {
             contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxSize()
         ) {
-            CircularProgressIndicator(modifier = Modifier.size(200.dp))
+            CircularProgressIndicator(modifier = Modifier.size(200.dp).testTag("ArticlesLoadingIndicator"))
         }
     } else {
         FullScreenTopBar(title = "TimesTrends", navController, showBackButton = false) {
@@ -93,26 +101,35 @@ fun PopularArticlesView(viewModel: PopularArticlesViewModel) {
 @Composable
 fun ArticleCell(article: TimesArticle, navController: NavController) {
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
-    val screenHeight = LocalConfiguration.current.screenHeightDp.dp
     val mediaMetadata = article.media.firstOrNull()?.metadata?.lastOrNull()
 
     Column(modifier = Modifier
         .height(300.dp)
         .width(screenWidth / 2)
         .clickable {
-            navController.navigate("article/${URLEncoder.encode(article.url, "UTF-8")}/${URLEncoder.encode(article.title, "UTF-8")}")
+            navController.navigate(
+                "article/${
+                    URLEncoder.encode(
+                        article.url,
+                        "UTF-8"
+                    )
+                }/${URLEncoder.encode(article.title, "UTF-8")}"
+            )
         }) {
         Card(
             modifier = Modifier
                 .height(200.dp)
-                .width(screenWidth / 2 )
+                .width(screenWidth / 2)
                 .padding(8.dp)
         ) {
             AsyncImage(
-                model = mediaMetadata?.url,
+                model = if (!mediaMetadata?.url.isNullOrBlank()) mediaMetadata?.url else null,
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                placeholder = painterResource(id = R.drawable.article_placeholder),
+                fallback = painterResource(id = R.drawable.article_placeholder),
+                error = painterResource(id = R.drawable.article_placeholder)
             )
         }
 

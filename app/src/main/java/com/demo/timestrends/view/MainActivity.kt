@@ -4,8 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.runtime.collectAsState
 import com.demo.timestrends.viewmodel.PopularArticlesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

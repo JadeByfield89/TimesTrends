@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.demo.timestrends.BuildConfig
 import com.demo.timestrends.api.TimesAPI
 import com.demo.timestrends.model.TimesArticle
-import com.demo.timestrends.util.API_KEY
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
