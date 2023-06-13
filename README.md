@@ -32,7 +32,7 @@ enough place to be the defacto UI standard on Android. Looking forward to contin
 # Testing
 
 Unit and UI tests can be found in the appropriate packages. I kept things simple here to demonstrate the main cases that I would be looking to cover in a simple app of this kind. We want to 
-make sure that the data that we fetch is returned in a predictable an expected way. We want to ensure that in the case of an error, we are handling things in a controlled and seamless manner as well.
+make sure that the data that we fetch is returned in a predictable and expected way. We want to ensure that in the case of an error, we are handling things in a controlled and seamless manner as well.
 
 # API KEY
 I have shared the Times API key via email. The project is configured to read this field from the 'gradle.properties' file in the root directory of the project. Please add the api key to that file
